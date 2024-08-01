@@ -1,6 +1,14 @@
 import { ActionListItem } from "@/components/running/ActionListItem";
 import { useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import {
+  FlatList,
+  PlatformColor,
+  Pressable,
+  StyleSheet,
+  TouchableHighlight,
+} from "react-native";
+import { Text, View } from "@/components/Themed";
+import Colors from "@/constants/Colors";
 
 interface IAction {
   name: string;
@@ -44,6 +52,7 @@ export default function RunningScreen() {
   return (
     <View style={styles.container}>
       <FlatList
+        style={styles.actionList}
         data={actions}
         renderItem={({ item }) => (
           <ActionListItem
@@ -54,10 +63,35 @@ export default function RunningScreen() {
         )}
         keyExtractor={(item) => item.name}
       />
+      <View style={styles.timerBarContainer}>
+        <TouchableHighlight onPress={() => {}}>
+          <View style={styles.timerButtonContainer}>
+            <Text>▶︎</Text>
+          </View>
+        </TouchableHighlight>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: { flex: 1, flexDirection: "column" },
+  actionList: { flex: 1 },
+  timerBarContainer: {
+    backgroundColor: Colors.light.background,
+    padding: 42 / 2,
+    borderTopColor: Colors.light.tint,
+    borderTopWidth: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  timerButtonContainer: {
+    backgroundColor: Colors.light.tint,
+    borderRadius: 42 / 2,
+    width: 42,
+    height: 42,
+    marginVertical: -42 / 2,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
