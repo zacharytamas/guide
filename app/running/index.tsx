@@ -1,6 +1,6 @@
 import { ActionListItem } from "@/components/running/ActionListItem";
 import { useState } from "react";
-import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 
 interface IAction {
   name: string;
